@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import randomcolor from "randomcolor"
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';

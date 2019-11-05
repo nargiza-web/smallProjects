@@ -1,27 +1,48 @@
 import React from 'react';
+import randomcolor from "randomcolor";
 
 class App extends React.Component {
   constructor(){
     super()
     this.state = {
-      count : 0
+      count : 0,
+      color: ""
     }
-    this.handleClick = this.handleClick.bind(this)
+    this.increment = this.increment.bind(this)
+    this.decrement = this.decrement.bind(this)
   }
   
-  handleClick() {
+  increment() {
     this.setState(prevState => {
       return {
-        count: prevState.count + 1
+        count: prevState.count + 1,
+        // color: randomcolor()
       }
     })
+  }
+  
+  decrement(){
+    this.setState(prevState => {
+      return {
+        count: prevState.count - 1,
+        // color: randomcolor()
+      }
+    })
+  }
+  
+  componentDidUpdate(prevProps, prevState) { //extra method when it gets more complex to use
+    if(prevState.count != this.state.count){
+      const newColor = randomcolor()
+      this.setState({color: newColor})
+    }
   }
   
   render () {
     return (
       <div>
-      <h1> {this.state.count}</h1>
-      <button onClick = {this.handleClick}> Change! </button>
+      <h1 style={{color: this.state.color}}> {this.state.count}</h1>
+      <button onClick = {this.increment}> Increment! </button>
+      <button onClick = {this.decrement}> Decrement!</button>
       </div>
     )
   }
